@@ -1,0 +1,2 @@
+include ':movilizer-spring-connector'
+project(':movilizer-spring-connector').projectDir = new File(settingsDir, '../movilizer-spring-connector')

@@ -1,0 +1,50 @@
+/*
+ * Documentation on creating multi project builds with gradle:
+ * https://looksok.wordpress.com/2014/07/12/compile-gradle-project-with-another-project-as-a-dependency/
+ * https://rominirani.com/gradle-tutorial-part-3-multiple-java-projects-5b1c4d1fbd8d#.1t69l02v6
+ * https://docs.gradle.org/current/userguide/multi_project_builds.html
+ *
+ */
+
+
+apply plugin: 'base'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+group = 'com.movilizer.connector'
+version = '2.0'
+description = 'This application provide the connector for <project>'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+springBoot {
+	mainClass = 'com.movilizer.connector.example.Application'
+}
+
+
+buildscript {
+	repositories {
+		maven { url "http://repo.spring.io/libs-release" }
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.8.RELEASE")
+	}
+}
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	// A single directory added to a custom-named repositories grouping.
+    flatDir name: 'localDiskRepo', dirs: '../movilizer-spring-connector/lib'
+}
+
+
+dependencies {
+	compile project(":movilizer-spring-connector")
+}
