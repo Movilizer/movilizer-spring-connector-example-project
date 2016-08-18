@@ -13,10 +13,9 @@ To set up the connector please under eclipse:
 4. Choose the example you want to use and enter the Configuration class of this example under com.movilizer.connector.Application.java
 
 There for in the following listing you can change MasterDataSendingConfiguration.class to DatacontainerProcessorConfiguration.java etc.
-...
-@SpringBootApplication
-@Import(MasterDataSendingConfiguration.class)
-public class Application extends SpringBootServletInitializer implements WebApplicationInitializer {
 
-    private static Log logger = LogFactory.getLog(Application.class);
-...
+    @SpringBootApplication
+    @Import(MasterDataSendingConfiguration.class)
+    public class Application extends SpringBootServletInitializer implements WebApplicationInitializer {
+      private static Log logger = LogFactory.getLog(Application.class);
+
